@@ -3,44 +3,63 @@ package com.userfront.domain;
 import java.math.BigDecimal;
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+@Entity
 public class PrimaryAccount {
-	private long id;
-	private int accountNumber;
-	private BigDecimal accountBalance;
-	
-	private List<PrimaryTransaction> primaryTransactionList;
 
-	public long getId() {
-		return id;
-	}
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+    private int accountNumber;
+    private BigDecimal accountBalance;
 
-	public void setId(long id) {
-		this.id = id;
-	}
+    @OneToMany(mappedBy = "primaryAccount", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
+    private List<PrimaryTransaction> primaryTransactionList;
 
-	public int getAccountNumber() {
-		return accountNumber;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public void setAccountNumber(int accountNumber) {
-		this.accountNumber = accountNumber;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public BigDecimal getAccountBalance() {
-		return accountBalance;
-	}
+    public int getAccountNumber() {
+        return accountNumber;
+    }
 
-	public void setAccountBalance(BigDecimal accountBalance) {
-		this.accountBalance = accountBalance;
-	}
+    public void setAccountNumber(int accountNumber) {
+        this.accountNumber = accountNumber;
+    }
 
-	public List<PrimaryTransaction> getPrimaryTransactionList() {
-		return primaryTransactionList;
-	}
+    public BigDecimal getAccountBalance() {
+        return accountBalance;
+    }
 
-	public void setPrimaryTransactionList(List<PrimaryTransaction> primaryTransactionList) {
-		this.primaryTransactionList = primaryTransactionList;
-	}
-	
-	
+    public void setAccountBalance(BigDecimal accountBalance) {
+        this.accountBalance = accountBalance;
+    }
+
+    public List<PrimaryTransaction> getPrimaryTransactionList() {
+        return primaryTransactionList;
+    }
+
+    public void setPrimaryTransactionList(List<PrimaryTransaction> primaryTransactionList) {
+        this.primaryTransactionList = primaryTransactionList;
+    }
+
+
 }
+
+
+
