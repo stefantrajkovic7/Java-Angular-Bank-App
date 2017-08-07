@@ -1,70 +1,85 @@
 package com.userfront.domain;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+@Entity
 public class Recipient {
-	private Long id;
-	private String name;
-	private String email;
-	private String phone;
-	private String accountNumber;
-	private String description;
-	
-	private User user;
 
-	public Long getId() {
-		return id;
-	}
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+    private String name;
+    private String email;
+    private String phone;
+    private String accountNumber;
+    private String description;
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    @JsonIgnore
+    private User user;
 
-	public String getName() {
-		return name;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public String getEmail() {
-		return email;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public String getPhone() {
-		return phone;
-	}
+    public String getEmail() {
+        return email;
+    }
 
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-	public String getAccountNumber() {
-		return accountNumber;
-	}
+    public String getPhone() {
+        return phone;
+    }
 
-	public void setAccountNumber(String accountNumber) {
-		this.accountNumber = accountNumber;
-	}
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
 
-	public String getDescription() {
-		return description;
-	}
+    public String getAccountNumber() {
+        return accountNumber;
+    }
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+    public void setAccountNumber(String accountNumber) {
+        this.accountNumber = accountNumber;
+    }
 
-	public User getUser() {
-		return user;
-	}
+    public User getUser() {
+        return user;
+    }
 
-	public void setUser(User user) {
-		this.user = user;
-	}
-	
-	
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 }
+

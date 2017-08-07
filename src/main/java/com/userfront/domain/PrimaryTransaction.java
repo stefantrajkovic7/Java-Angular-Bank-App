@@ -3,95 +3,105 @@ package com.userfront.domain;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+@Entity
 public class PrimaryTransaction {
-	private Long id;
-	private Date date;
-	private String description;
-	private String type;
-	private String status;
-	private double amount;
-	private BigDecimal availableBalance;
-	private PrimaryAccount primaryAccount;
-	
-	public PrimaryTransaction() {}
 
-	public PrimaryTransaction(Date date, String description, String type, String status, double amount,
-			BigDecimal availableBalance, PrimaryAccount primaryAccount) {
-		super();
-		this.date = date;
-		this.description = description;
-		this.type = type;
-		this.status = status;
-		this.amount = amount;
-		this.availableBalance = availableBalance;
-		this.primaryAccount = primaryAccount;
-	}
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+    private Date date;
+    private String description;
+    private String type;
+    private String status;
+    private double amount;
+    private BigDecimal availableBalance;
 
-	public Long getId() {
-		return id;
-	}
+    public PrimaryTransaction() {}
 
-	public void setId(Long id) {
-		this.id = id;
-	}
 
-	public Date getDate() {
-		return date;
-	}
+    public PrimaryTransaction(Date date, String description, String type, String status, double amount, BigDecimal availableBalance, PrimaryAccount primaryAccount) {
+        this.date = date;
+        this.description = description;
+        this.type = type;
+        this.status = status;
+        this.amount = amount;
+        this.availableBalance = availableBalance;
+        this.primaryAccount = primaryAccount;
+    }
 
-	public void setDate(Date date) {
-		this.date = date;
-	}
+    @ManyToOne
+    @JoinColumn(name = "primary_account_id")
+    private PrimaryAccount primaryAccount;
 
-	public String getDescription() {
-		return description;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public String getType() {
-		return type;
-	}
+    public Date getDate() {
+        return date;
+    }
 
-	public void setType(String type) {
-		this.type = type;
-	}
+    public void setDate(Date date) {
+        this.date = date;
+    }
 
-	public String getStatus() {
-		return status;
-	}
+    public String getDescription() {
+        return description;
+    }
 
-	public void setStatus(String status) {
-		this.status = status;
-	}
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-	public double getAmount() {
-		return amount;
-	}
+    public String getType() {
+        return type;
+    }
 
-	public void setAmount(double amount) {
-		this.amount = amount;
-	}
+    public void setType(String type) {
+        this.type = type;
+    }
 
-	public BigDecimal getAvailableBalance() {
-		return availableBalance;
-	}
+    public String getStatus() {
+        return status;
+    }
 
-	public void setAvailableBalance(BigDecimal availableBalance) {
-		this.availableBalance = availableBalance;
-	}
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
-	public PrimaryAccount getPrimaryAccount() {
-		return primaryAccount;
-	}
+    public double getAmount() {
+        return amount;
+    }
 
-	public void setPrimaryAccount(PrimaryAccount primaryAccount) {
-		this.primaryAccount = primaryAccount;
-	}
+    public void setAmount(double amount) {
+        this.amount = amount;
+    }
 
-	
-	
-	
+    public BigDecimal getAvailableBalance() {
+        return availableBalance;
+    }
+
+    public void setAvailableBalance(BigDecimal availableBalance) {
+        this.availableBalance = availableBalance;
+    }
+
+    public PrimaryAccount getPrimaryAccount() {
+        return primaryAccount;
+    }
+
+    public void setPrimaryAccount(PrimaryAccount primaryAccount) {
+        this.primaryAccount = primaryAccount;
+    }
+
 }
