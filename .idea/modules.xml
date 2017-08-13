@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Online Banking.iml" filepath="$PROJECT_DIR$/Online Banking.iml" />
+      <module fileurl="file://$PROJECT_DIR$/UserFront/bin/UserFront.iml" filepath="$PROJECT_DIR$/UserFront/bin/UserFront.iml" />
+    </modules>
+  </component>
+</project>
