@@ -1,4 +1,4 @@
-package com.userfront.Dao;
+package com.userfront.dao;
 
 import java.util.List;
 

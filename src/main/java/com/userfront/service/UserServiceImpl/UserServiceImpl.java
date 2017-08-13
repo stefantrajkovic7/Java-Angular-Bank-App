@@ -10,8 +10,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.userfront.Dao.RoleDao;
-import com.userfront.Dao.UserDao;
+import com.userfront.dao.RoleDao;
+import com.userfront.dao.UserDao;
 import com.userfront.domain.User;
 import com.userfront.domain.security.UserRole;
 import com.userfront.service.AccountService;

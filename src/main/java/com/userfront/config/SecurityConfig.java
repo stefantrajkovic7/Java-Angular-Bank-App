@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -17,17 +18,18 @@ import com.userfront.service.UserServiceImpl.UserSecurityService;
 
 @Configuration
 @EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled=true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-	
-	@Autowired
-	private Environment env;
-	
-	@Autowired
-	private UserSecurityService userSecurityService;
-	
-	private static final String SALT = "salt"; // Salt should be protected carefully
-	
-	@Bean
+
+    @Autowired
+    private Environment env;
+
+    @Autowired
+    private UserSecurityService userSecurityService;
+
+    private static final String SALT = "salt"; // Salt should be protected carefully
+
+    @Bean
     public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder(12, new SecureRandom(SALT.getBytes()));
     }
@@ -44,7 +46,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             "/console/**",
             "/signup"
     };
-    
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
@@ -61,10 +63,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .rememberMe();
     }
-    
+
+
+
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
 //    	 auth.inMemoryAuthentication().withUser("user").password("password").roles("USER"); //This is in-memory authentication
         auth.userDetailsService(userSecurityService).passwordEncoder(passwordEncoder());
     }
+
+
 }
